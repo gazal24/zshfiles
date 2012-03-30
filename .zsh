@@ -81,6 +81,7 @@ prompt adam2
 ##### TEMPRORARY ALIAS #########
 alias tt='feh ~/timetable.jpg'
 ################################
+alias dirs="dirs -v"
 alias emacs="emacs -nw"
 alias mp='mplayer'
 alias df='df -h'
