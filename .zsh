@@ -91,6 +91,8 @@ alias la='ls -aG --color'
 alias ll='ls -lhG --color'
 alias ls='ls -G --color'
 alias l='ls -G --color'
+alias cp='cp -i'
+alias mv='mv -i'
 alias rm='rm -i'
 
 alias info='info --vi-keys'
