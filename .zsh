@@ -212,7 +212,7 @@ if [[ -s "$HOME/.rvm/scripts/rvm" ]] ; then source "$HOME/.rvm/scripts/rvm" ; fi
 . $HOME/.zsh/z/z.sh
 
 # Rooter; https://github.com/yeban/rooter.sh
-. $HOME/.zsh/rooter.sh/rooter.sh
+. $HOME/.zshfiles/rooter.sh/rooter.sh
 
 #set JAVA_HOME
 JAVA_HOME=/usr/lib/jvm/java-6-sun-1.6.0.26/jre/
