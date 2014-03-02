@@ -74,6 +74,17 @@ autoload -Uz promptinit
 promptinit
 prompt adam2
 
+# Show which git-branch we are in
+function precmd() {
+#    if [ -d .git ]; then
+     if git rev-parse --is-inside-git-dir > /dev/null 2>&1; then
+      RPROMPT='%F{yellow}['
+      RPROMPT=$RPROMPT''`git symbolic-ref HEAD 2> /dev/null | cut -b 12-`']'
+    else
+      RPROMPT=''
+    fi;
+}
+
 #PS1="%~$ "
 #export MOZ_NO_REMOTE=1
 
