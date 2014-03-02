@@ -101,10 +101,12 @@ alias du='du -hs'
 alias la='ls -aG --color'
 alias ll='ls -lhG --color'
 alias ls='ls -G --color'
+alias lsr='ls -lrt -G --color'
 alias l='ls -G --color'
 alias cp='cp -i'
 alias mv='mv -i'
 alias rm='rm -i'
+alias bat='upower -i /org/freedesktop/UPower/devices/battery_BAT0| grep -E "state|to\ full|percentage" | xargs -0 notify-send'
 
 alias info='info --vi-keys'
 
