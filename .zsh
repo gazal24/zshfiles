@@ -89,8 +89,13 @@ function precmd() {
 #export MOZ_NO_REMOTE=1
 
 ### Aliases
-##### TEMPRORARY ALIAS #########
-alias tt='feh ~/timetable.jpg'
+##### EXPORT SCREEN ALIAS #########
+alias xin='xrandr --output LVDS1 --auto --output VGA1 --off '
+alias xoutl='xrandr --output VGA1 --mode 1920x1080 --left-of LVDS1'
+alias xoutr='xrandr --output VGA1 --mode 1920x1080 --right-of LVDS1'
+alias gsm='gnome-system-monitor &'
+alias gcl='gnome-control-center &'
+
 ################################
 alias dirs="dirs -v"
 alias emacs="emacs -nw"
@@ -106,6 +111,7 @@ alias l='ls -G --color'
 alias cp='cp -i'
 alias mv='mv -i'
 alias rm='rm -i'
+alias grep='grep --color -E'
 alias bat='upower -i /org/freedesktop/UPower/devices/battery_BAT0| grep -E "state|to\ full|percentage" | xargs -0 notify-send'
 
 alias info='info --vi-keys'
@@ -136,12 +142,25 @@ alias sshr="ssh -p $srp $sr"
 alias entertain='mplayer "$(find "." -type f -regextype posix-egrep -regex ".*\.(avi|mkv|flv|mpg|mpeg|mp4|wmv|3gp|mov|divx)" | shuf -n1)"'
 alias rand='tr -c "[:digit:]" " " < /dev/urandom | dd cbs=$COLUMNS conv=unblock | GREP_COLOR="1;32" grep --color "[^ ]"'
 
+alias aaw="cd ~/work/ad-aggregator-web"
+alias aai="cd ~/work/ad-aggregator-infra"
+alias aad="cd ~/work/ad-aggregrator-doc"
+alias aag="cd ~/work/ad-aggregator"
+alias pmp="cd ~/workspace/pmpowertool/WebContent/"
+function qa {
+  ssh ggarg@qa$1.kiwiup.com -p $2
+}
+
+function vol {
+    pactl set-sink-volume 0 $1%
+}
+
 ### Exports
 export PKG_CONFIG_PATH=/home/yeban/opt/lib/pkgconfig/:${PKG_CONFIG_PATH}
 
 export PYTHONSTARTUP=$HOME/.pythonrc
 export RSENSE_HOME=/home/yeban/opt/rsense-0.3
-export PATH=$PATH:/$HOME/opt/ncbi-blast/bin
+#export PATH=$PATH:/$HOME/opt/ncbi-blast/bin
 
 export _JAVA_AWT_WM_NONREPARENTING=1
 
@@ -230,7 +249,21 @@ if [[ -s "$HOME/.rvm/scripts/rvm" ]] ; then source "$HOME/.rvm/scripts/rvm" ; fi
 . $HOME/.zsh/rooter.sh/rooter.sh
 
 #set JAVA_HOME
-JAVA_HOME=/usr/lib/jvm/java-6-sun-1.6.0.26/jre/
+# -- The line below was set earlier in some machine. Can be ignored safely.
+# JAVA_HOME=/usr/lib/jvm/java-6-sun-1.6.0.26/jre/
+#The line below was added for Kiwi office laptop.
+JAVA_HOME=/usr/lib/jdk/jdk1.6.0_30/
 export JAVA_HOME
 PATH=$PATH:$JAVA_HOME/bin
 export PATH
+
+export PATH=$PATH:/home/$USER/development/android-sdk-linux/platform-tools
+export PATH=$PATH:/home/$USER/development/android-sdk-linux/tools
+export PATH=$PATH:/home/$USER/development/play-2.2.2
+export PATH=$PATH:/home/$USER/development/idea-IC-139.1117.1/bin/
+export PATH=/usr/lib/jdk/jdk1.6.0_30/bin/:$PATH
+
+PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+
+cat ~/my_motd.txt
+
