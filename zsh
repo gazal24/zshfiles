@@ -4,6 +4,8 @@ HISTFILE=~/.histfile
 HISTSIZE=5000
 SAVEHIST=5000
 
+. ~/.zsh/z.sh
+
 # zsh options; man zshoptions
 setopt sharehistory
 setopt histignoredups
@@ -103,11 +105,11 @@ alias mp='mplayer'
 alias df='df -h'
 alias du='du -hs'
 
-alias la='ls -aG --color'
-alias ll='ls -lhG --color'
-alias ls='ls -G --color'
-alias lsr='ls -lrt -G --color'
-alias l='ls -G --color'
+alias la='ls -aG'
+alias ll='ls -lhG' 
+alias ls='ls -GF -c'
+alias lsr='ls -lrthF -G'
+alias l='ls -G'
 alias cp='cp -i'
 alias mv='mv -i'
 alias rm='rm -i'
@@ -128,32 +130,31 @@ alias psh='aptitude show'
 alias halt='sudo shutdown -h now'
 alias reboot='sudo reboot'
 
-alias e='emacsclient -n'
+alias e='vim'
 
 alias -g ack='ack-grep'
 alias -g G='| grep'
 alias -g L='| less'
+alias -g C='| pbcopy'
 
 alias sz='source ~/.zshrc'
 alias ez='e ~/.zshrc'
 
 alias sshr="ssh -p $srp $sr"
 
+alias gitmb="git branch | grep '^\*' | cut -d ' ' -f2 | xargs  git merge-base master  | xargs git show"
+function gitct { git rev-list --left-right --count master...$1 }
+
 alias entertain='mplayer "$(find "." -type f -regextype posix-egrep -regex ".*\.(avi|mkv|flv|mpg|mpeg|mp4|wmv|3gp|mov|divx)" | shuf -n1)"'
 alias rand='tr -c "[:digit:]" " " < /dev/urandom | dd cbs=$COLUMNS conv=unblock | GREP_COLOR="1;32" grep --color "[^ ]"'
 
-alias aaw="cd ~/work/ad-aggregator-web"
-alias aai="cd ~/work/ad-aggregator-infra"
-alias aad="cd ~/work/ad-aggregrator-doc"
-alias aag="cd ~/work/ad-aggregator"
-alias pmp="cd ~/workspace/pmpowertool/WebContent/"
-function qa {
-  ssh ggarg@qa$1.kiwiup.com -p $2
+alias zi="cd ~/work/zilingo"
+
+function cl {
+	curl localhost:9000
 }
 
-function vol {
-    pactl set-sink-volume 0 $1%
-}
+alias vim="/usr/local/bin/vim"
 
 ### Exports
 export PKG_CONFIG_PATH=/home/yeban/opt/lib/pkgconfig/:${PKG_CONFIG_PATH}
@@ -252,9 +253,10 @@ if [[ -s "$HOME/.rvm/scripts/rvm" ]] ; then source "$HOME/.rvm/scripts/rvm" ; fi
 # -- The line below was set earlier in some machine. Can be ignored safely.
 # JAVA_HOME=/usr/lib/jvm/java-6-sun-1.6.0.26/jre/
 #The line below was added for Kiwi office laptop.
-JAVA_HOME=/usr/lib/jdk/jdk1.6.0_30/
+JAVA_HOME=$(/usr/libexec/java_home)
 export JAVA_HOME
 PATH=$PATH:$JAVA_HOME/bin
+PATH="/usr/local/sbin:$PATH"
 export PATH
 
 export PATH=$PATH:/home/$USER/development/android-sdk-linux/platform-tools
@@ -262,8 +264,12 @@ export PATH=$PATH:/home/$USER/development/android-sdk-linux/tools
 export PATH=$PATH:/home/$USER/development/play-2.2.2
 export PATH=$PATH:/home/$USER/development/idea-IC-139.1117.1/bin/
 export PATH=/usr/lib/jdk/jdk1.6.0_30/bin/:$PATH
+export PATH=$PATH:/Users/gazal/development/activator-dist-1.3.5
 
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 
-cat ~/my_motd.txt
+export LC_ALL=C
+
+export LC_ALL=en_US.UTF-8  
+export LANG=en_US.UTF-8
 
